@@ -6,10 +6,23 @@ const Weather: React.FC = (props) => {
   const { navigation } = props;
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate('Configurações')}>
-        <Icon name="settings" color="#333" size={24} />
-      </TouchableOpacity>
-      <Text style={styles.text}>Weather</Text>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Barreiras</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Configurações')}>
+          <Icon name="settings" color="#333" size={24} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.conditionContainer}>
+        <Text>Icon</Text>
+        <View style={styles.conditionContent}>
+          <Text style={styles.conditionTitle}>Nublado</Text>
+          <Text style={styles.conditionDescription}>Céu encoberdo</Text>
+        </View>
+      </View>
+      <View style={styles.temperatureContainer}>
+        <Text style={styles.temperatureTitle}>28°C</Text>
+        <Text style={styles.temperatureDescription}>Max 30° / Min 18°</Text>
+      </View>
     </View>
   );
 };
@@ -17,13 +30,43 @@ const Weather: React.FC = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 32,
-    justifyContent: 'space-around',
     alignItems: 'center',
   },
-  text: {
-    fontSize: 20,
-    marginBottom: 50,
+  header: {
+    marginTop: 60,
+    width: 300,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+  },
+  headerTitle: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    marginVertical: 70,
+  },
+  conditionContainer: {
+    flexDirection: 'row',
+    width: 300,
+    justifyContent: 'space-between',
+  },
+  conditionContent: {
+    width: 150,
+    marginBottom: 20,
+  },
+  conditionTitle: {
+    fontSize: 25,
+  },
+  conditionDescription: {
+    fontSize: 16,
+  },
+  temperatureContainer: {
+    width: 300,
+  },
+  temperatureTitle: {
+    fontSize: 25,
+  },
+  temperatureDescription: {
+    fontSize: 16,
   },
 });
 
