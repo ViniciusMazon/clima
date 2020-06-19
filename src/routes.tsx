@@ -16,7 +16,7 @@ const TabNavigator = () => {
     <Tab.Navigator
       initialRouteName="Clima"
       activeColor="#fff"
-      inactiveColor="#000"
+      inactiveColor="#333"
       barStyle={{ backgroundColor: '#4666e4' }}>
       <Tab.Screen
         name="Clima"
