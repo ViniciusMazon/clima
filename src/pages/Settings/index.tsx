@@ -61,6 +61,7 @@ const Settings: React.FC = () => {
     if (selectedCity !== '') {
       await AsyncStorage.setItem('Clima_city', selectedCity);
       routeParams.setCity(selectedCity);
+      routeParams.setHaveCity(true);
     }
     navigation.navigate('Clima');
   }

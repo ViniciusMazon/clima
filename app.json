@@ -3,9 +3,7 @@
     "name": "Clima",
     "slug": "clima",
     "platforms": [
-      "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,8 +19,9 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
+    "android": {
+      "package": "com.viniciusmazon.clima",
+      "versionCode": 1
     }
   }
 }

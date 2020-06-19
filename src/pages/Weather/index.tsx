@@ -22,18 +22,21 @@ const Weather: React.FC = () => {
   const [city, setCity] = useState('');
   const [weather, setWeather] = useState<weatherData>({});
   const [isLoading, setIsLoading] = useState(true);
+  const [haveCity, setHaveCity] = useState(true);
 
   async function getStorageCity() {
     try {
       const value = await AsyncStorage.getItem('Clima_city');
       if (value !== null) {
         setCity(value);
+      } else {
+        setHaveCity(false);
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
     }
   }
-
   useEffect(() => {
     setIsLoading(true);
     getStorageCity();
@@ -56,7 +59,6 @@ const Weather: React.FC = () => {
             temp_max,
             temp_min,
           };
-
           setWeather(data);
         });
       setIsLoading(false);
@@ -71,11 +73,28 @@ const Weather: React.FC = () => {
     );
   }
 
+  if (!haveCity) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.noCityContent}>
+          <Text style={styles.noCityTitle}>Por favor, selecione sua localidade</Text>
+          <TouchableOpacity
+            style={styles.noCityButton}
+            onPress={() => navigation.navigate('Configurações', { setCity, setHaveCity })}>
+            <Icon name="settings" color="#fff" size={24} />
+            <Text style={styles.noCityButtonText}>Selecionar localidade</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>{city !== '' ? city : 'Null'}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Configurações', { setCity })}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Configurações', { setCity, setHaveCity })}>
           <Icon name="settings" color="#666" size={24} />
         </TouchableOpacity>
       </View>
@@ -106,6 +125,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+  },
+  noCityContent: {
+    marginTop: 150,
+    width: 300,
+  },
+  noCityTitle: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 35,
+  },
+  noCityButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 300,
+    height: 60,
+    backgroundColor: '#4666e4',
+    borderRadius: 4,
+  },
+  noCityButtonText: {
+    fontWeight: 'bold',
+    color: '#fff',
+    fontSize: 16,
+    marginLeft: 15,
   },
   header: {
     marginTop: 60,
