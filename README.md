@@ -46,7 +46,7 @@ Desenvolvido com o intuito de aprender a utilizar React Navigation
 
 # ✨ Principais funcionalidades
 
-* Busca o nome e as cidades e estados brasileiros na API do IBGE
+* Busca o nome das cidades e estados brasileiros na API do IBGE
 
 * Exibe as informações do clima atual, como: condição climática atual, temperatura, temperatura máxima e temperatura mínima
 
